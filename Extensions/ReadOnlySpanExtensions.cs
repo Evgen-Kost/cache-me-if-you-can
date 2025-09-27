@@ -17,4 +17,11 @@ public static class ReadOnlySpanExtensions
             if (char.IsSymbol(c) || char.IsPunctuation(c)) return true;
         return false;
     }
+    
+    public static bool ContainsDigitOrSpecialByUnicode(this ReadOnlySpan<char> s)
+    {
+        foreach (var c in s)
+            if (char.IsDigit(c) || char.IsSymbol(c) || char.IsPunctuation(c)) return true;
+        return false;
+    }
 }
