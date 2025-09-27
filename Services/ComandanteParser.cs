@@ -39,9 +39,8 @@ public static class ComandanteParser
             while (i < span.Length && seps.IndexOf(span[i]) >= 0) i++;
         }
 
-        if (result[1].IsEmpty 
-            || result[0].ContainsDigit() 
-            || result[0].ContainsSpecialByUnicode() ) return new MultiSpan();
+        if (result[1].IsEmpty || result[0].ContainsDigitOrSpecialByUnicode() ) 
+            return new MultiSpan();
         
         return result;
     }
