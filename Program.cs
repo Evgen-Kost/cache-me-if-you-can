@@ -1,5 +1,7 @@
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+builder.AddMaintainServices();
+builder.AddProcessServices();
 
 var host = builder.Build();
+
 host.Run();
