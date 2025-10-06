@@ -40,11 +40,8 @@ public class TerribleConnectionProblemServer : IDisposable
 
         while (!ct.IsCancellationRequested)
         {
-            while (true)
-            {
                 var client = await _serverSocket.AcceptAsync(ct);
                 _ = ProcessClientSafeAsync(client, ct);
-            }
         }
     }
 
@@ -75,7 +72,7 @@ public class TerribleConnectionProblemServer : IDisposable
 
         try
         {
-            while (true)
+            while (!ct.IsCancellationRequested)
             {
                 var byteReceived = await clientSocket.ReceiveAsync(
                     new Memory<byte>(rentBuffer, 0, rentBuffer.Length), 
@@ -87,12 +84,12 @@ public class TerribleConnectionProblemServer : IDisposable
                     _logger.LogInformation("Client disconnected");
                     break;
                 }
-                
-                var charCount = Encoding.UTF8.GetCharCount(rentBuffer);
+
+                var charCount = Encoding.UTF8.GetCharCount(rentBuffer, 0, byteReceived);
                 var rentedArray = ArrayPool<char>.Shared.Rent(charCount);
                 try
                 {
-                    Encoding.UTF8.GetChars(rentBuffer, rentedArray);
+                    Encoding.UTF8.GetChars(rentBuffer, 0, byteReceived, rentedArray, 0);
                     ReadOnlyMemory<char> charMemory = rentedArray.AsMemory(0, charCount);
                     var multiSpan = ComandanteParser.Parse(charMemory);
 
