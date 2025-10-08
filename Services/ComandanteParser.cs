@@ -44,4 +44,9 @@ public static class ComandanteParser
         
         return result;
     }
+    
+    public static MultiSpan Parse(ReadOnlyMemory<char> memoryBlock)
+    {
+        return Parse(memoryBlock.Span);
+    }
 }
