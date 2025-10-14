@@ -24,4 +24,9 @@ public static class ReadOnlySpanExtensions
             if (char.IsDigit(c) || char.IsSymbol(c) || char.IsPunctuation(c)) return true;
         return false;
     }
+    
+    public static byte[] ToByteArray<T>(this ReadOnlySpan<T> s) where T : struct
+    {
+        return MemoryMarshal.AsBytes(s).ToArray();
+    }
 }
