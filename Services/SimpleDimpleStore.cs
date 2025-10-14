@@ -56,7 +56,7 @@ public class SimpleDimpleStore : IDisposable
         }
     }
     
-    public (long setCount, long getCount, long deleteCount) GetStats()
+    public (long setCount, long getCount, long deleteCount) GetStatistics()
     {
         try
         {

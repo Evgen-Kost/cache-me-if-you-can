@@ -25,7 +25,7 @@ public class SimpleDimpleStoreTests
             _simpleDimpleStore.Set(multispan.Key.ToString(), multispan.Value.ToByteArray());
         }
 
-        var stats = _simpleDimpleStore.GetStats();
+        var stats = _simpleDimpleStore.GetStatistics();
         _simpleStoreSetItemsCount = stats.setCount;
     }
 
@@ -57,7 +57,7 @@ public class SimpleDimpleStoreTests
             }
         });
 
-        var stats = _simpleDimpleStore.GetStats();
+        var stats = _simpleDimpleStore.GetStatistics();
         _simpleStoreSetItemsCount += inputCount;
         Assert.Equal(_simpleStoreSetItemsCount, stats.setCount);
     }
@@ -89,7 +89,7 @@ public class SimpleDimpleStoreTests
             }
         });
 
-        var stats = _simpleDimpleStore.GetStats();
+        var stats = _simpleDimpleStore.GetStatistics();
         Assert.Equal(inputCount, stats.deleteCount);
     }
 
@@ -120,7 +120,7 @@ public class SimpleDimpleStoreTests
             }
         });
 
-        var stats = _simpleDimpleStore.GetStats();
+        var stats = _simpleDimpleStore.GetStatistics();
         Assert.Equal(totalCount, stats.getCount);
     }
 
@@ -152,7 +152,7 @@ public class SimpleDimpleStoreTests
             _simpleDimpleStore.Delete(multispan.Key.ToString());
         });
 
-        var stats = _simpleDimpleStore.GetStats();
+        var stats = _simpleDimpleStore.GetStatistics();
 
         Assert.Multiple(
             () => Assert.Equal(_simpleStoreSetItemsCount + totalCount, stats.setCount),
