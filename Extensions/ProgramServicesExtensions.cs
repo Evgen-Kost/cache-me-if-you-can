@@ -15,5 +15,6 @@ public static class ProgramServicesExtensions
     public static void AddProcessServices(this HostApplicationBuilder builder)
     {
         builder.Services.AddScoped<TerribleConnectionProblemServer>();
+        builder.Services.AddSingleton<SimpleDimpleStore>();
     }
 }
