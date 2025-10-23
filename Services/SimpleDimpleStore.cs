@@ -55,7 +55,7 @@ public class SimpleDimpleStore : IDisposable
             _cache[key] = value;
             
             // Increment the Set operation counter atomically
-            Interlocked.Increment(ref _setCount);
+            _setCount++;
         }
         finally
         {
@@ -81,7 +81,7 @@ public class SimpleDimpleStore : IDisposable
             _cache.TryGetValue(key, out var value);
             
             // Increment the Get operation counter atomically
-            Interlocked.Increment(ref _getCount);
+            _getCount++;
             return value;
         }
         finally
@@ -106,7 +106,7 @@ public class SimpleDimpleStore : IDisposable
             _cache.Remove(key);
             
             // Increment the Delete operation counter atomically
-            Interlocked.Increment(ref _deleteCount);
+            _deleteCount++;
         }
         finally
         {
@@ -145,7 +145,6 @@ public class SimpleDimpleStore : IDisposable
     public void Dispose()
     {
         Dispose(true);
-        GC.SuppressFinalize(this); 
     }
 
     /// <summary>
