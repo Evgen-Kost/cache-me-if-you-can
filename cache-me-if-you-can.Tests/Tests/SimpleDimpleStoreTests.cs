@@ -1,4 +1,4 @@
-namespace cache_me_if_you_can.Tests;
+namespace cache_me_if_you_can.Tests.Tests;
 
 public class SimpleDimpleStoreTests
 {

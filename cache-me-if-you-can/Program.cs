@@ -1,4 +1,4 @@
-var builder = Host.CreateApplicationBuilder(args);
+﻿var builder = Host.CreateApplicationBuilder(args);
 builder.AddMaintainServices();
 builder.AddProcessServices();
 

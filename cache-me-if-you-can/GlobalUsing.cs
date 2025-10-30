@@ -3,6 +3,9 @@ global using cache_me_if_you_can.Structs;
 global using cache_me_if_you_can.Extensions;
 
 global using Microsoft.Extensions.Options;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
 
 global using System.Buffers;
 global using System.Net;
